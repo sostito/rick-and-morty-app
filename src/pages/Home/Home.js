@@ -21,15 +21,11 @@ function Home(props) {
           setLoading(false);
         });
     } catch (error) {
-      //this.setState({ loading: false, error: error });
+      console.log(
+        "Se produjo un error realizando la peticion al api. " + error
+      );
     }
   }, []);
-
-  React.useEffect(() => {
-    if (search) {
-      console.log(search);
-    }
-  }, [search]);
 
   return (
     <Fragment>
@@ -37,6 +33,16 @@ function Home(props) {
         <div className="row">
           {loading ? (
             <p>Cargando...</p>
+          ) : search !== null ? (
+            data.results
+              .filter((filterItem) =>
+                filterItem.name.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((item) => (
+                <div className="col-4" key={item.id}>
+                  <Card {...item} />
+                </div>
+              ))
           ) : (
             data.results.map((item) => (
               <div className="col-4" key={item.id}>

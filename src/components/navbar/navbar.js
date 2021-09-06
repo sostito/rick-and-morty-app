@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 function Navbar(props) {
   return (
     <Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
         <div className="container-fluid">
           <span className="navbar-brand" href="#">
             Rick and Morty App
@@ -20,7 +20,7 @@ function Navbar(props) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <form className="d-flex">
+            <form className="d-flex mx-auto">
               <input
                 onChange={props.hadleSearch}
                 className="form-control me-2"
@@ -28,9 +28,6 @@ function Navbar(props) {
                 placeholder="Busqueda"
                 aria-label="Search"
               ></input>
-              <button className="btn btn-outline-success" type="submit">
-                Buscar
-              </button>
             </form>
           </div>
         </div>
