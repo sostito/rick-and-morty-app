@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./styles/global";
 import Home from "./pages/Home/Home";
+import Episodes from "./pages/Episodes/Episodes";
 import Navbar from "./components/navbar/navbar";
 
 function App() {
@@ -15,7 +16,12 @@ function App() {
       <GlobalStyle />
       <Navbar hadleSearch={hadleSearch} />
       <Switch>
-        <Route path="/" render={() => <Home search={search} />}></Route>
+        <Route exact path="/" render={() => <Home search={search} />} />
+        <Route
+          exact
+          path="/episodes/:page"
+          render={(props) => <Episodes search={search} {...props} />}
+        />
       </Switch>
     </BrowserRouter>
   );

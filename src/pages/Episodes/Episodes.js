@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import CharacterCard from "../../components/card/character/CharacterCard";
+import EpisodeCard from "../../components/card/episode/EpisodeCard";
+import Pagination from "../../components/pagination/pagination";
 
-function Home(props) {
+function Episodes(props) {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState({});
   const [search, setSearch] = React.useState(null);
@@ -11,10 +12,18 @@ function Home(props) {
   }
 
   React.useEffect(() => {
+    hadleSearch();
+  }, []);
+
+  function hadleSearch(e) {
     try {
       setLoading(true);
       window
-        .fetch("https://rickandmortyapi.com/api/character")
+        .fetch(
+          `https://rickandmortyapi.com/api/episode${
+            e ? "?page=" + e.target.innerText : ""
+          }`
+        )
         .then((res) => res.json())
         .then((response) => {
           setData(response);
@@ -25,7 +34,7 @@ function Home(props) {
         "Se produjo un error realizando la peticion al api. " + error
       );
     }
-  }, []);
+  }
 
   return (
     <Fragment>
@@ -40,20 +49,29 @@ function Home(props) {
               )
               .map((item) => (
                 <div className="col-4" key={item.id}>
-                  <CharacterCard {...item} />
+                  <EpisodeCard {...item} />
                 </div>
               ))
           ) : (
             data.results.map((item) => (
               <div className="col-4" key={item.id}>
-                <CharacterCard {...item} />
+                <EpisodeCard {...item} />
               </div>
             ))
           )}
         </div>
+        {loading ? (
+          <p>Cargando...</p>
+        ) : (
+          <Pagination
+            nextPage={hadleSearch}
+            numberPages={data.info.pages}
+            activePage={props.match.params.page}
+          />
+        )}
       </div>
     </Fragment>
   );
 }
 
-export default Home;
+export default Episodes;

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import "./card.css";
+import "./CharacterCard.css";
 
 function Target(props) {
   return (
