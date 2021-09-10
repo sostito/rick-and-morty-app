@@ -1,4 +1,6 @@
 import React, { Fragment } from "react";
+import EpisodeCard from "../../components/card/episode/EpisodeCard";
+import Pagination from "../../components/pagination/pagination";
 
 function Episodes(props) {
   const [loading, setLoading] = React.useState(true);
@@ -10,10 +12,18 @@ function Episodes(props) {
   }
 
   React.useEffect(() => {
+    hadleSearch();
+  }, []);
+
+  function hadleSearch(e) {
     try {
       setLoading(true);
       window
-        .fetch("https://rickandmortyapi.com/api/episode")
+        .fetch(
+          `https://rickandmortyapi.com/api/episode${
+            e ? "?page=" + e.target.innerText : ""
+          }`
+        )
         .then((res) => res.json())
         .then((response) => {
           setData(response);
@@ -24,7 +34,7 @@ function Episodes(props) {
         "Se produjo un error realizando la peticion al api. " + error
       );
     }
-  }, []);
+  }
 
   return (
     <Fragment>
@@ -39,35 +49,26 @@ function Episodes(props) {
               )
               .map((item) => (
                 <div className="col-4" key={item.id}>
-                  <div className="card mb-4">
-                    <div className="card-body">
-                      <h5 className="card-title">{item.name}</h5>
-                      <div className="card-text">
-                        <p className="mb-0">Lanzamiento: {item.air_date}</p>
-                        <p className="mb-0">Identificador: {item.episode}</p>
-                      </div>
-                    </div>
-                  </div>
+                  <EpisodeCard {...item} />
                 </div>
               ))
           ) : (
             data.results.map((item) => (
               <div className="col-4" key={item.id}>
-                <div className="col-4" key={item.id}>
-                  <div className="card mb-4">
-                    <div className="card-body">
-                      <h5 className="card-title">{item.name}</h5>
-                      <div className="card-text">
-                        <p className="mb-0">Lanzamiento: {item.air_date}</p>
-                        <p className="mb-0">Identificador: {item.episode}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <EpisodeCard {...item} />
               </div>
             ))
           )}
         </div>
+        {loading ? (
+          <p>Cargando...</p>
+        ) : (
+          <Pagination
+            nextPage={hadleSearch}
+            numberPages={data.info.pages}
+            activePage={props.match.params.page}
+          />
+        )}
       </div>
     </Fragment>
   );

@@ -19,8 +19,8 @@ function App() {
         <Route exact path="/" render={() => <Home search={search} />} />
         <Route
           exact
-          path="/episodes"
-          render={() => <Episodes search={search} />}
+          path="/episodes/:page"
+          render={(props) => <Episodes search={search} {...props} />}
         />
       </Switch>
     </BrowserRouter>

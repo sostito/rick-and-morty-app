@@ -25,7 +25,7 @@ function Navbar(props) {
               <Link className="nav-link active" aria-current="page" to="/">
                 Home
               </Link>
-              <Link className="nav-link" to="/episodes">
+              <Link className="nav-link" to="/episodes/1">
                 Episodes
               </Link>
             </div>

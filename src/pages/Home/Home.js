@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Card from "../../components/card/card";
+import CharacterCard from "../../components/card/character/CharacterCard";
 
 function Home(props) {
   const [loading, setLoading] = React.useState(true);
@@ -40,13 +40,13 @@ function Home(props) {
               )
               .map((item) => (
                 <div className="col-4" key={item.id}>
-                  <Card {...item} />
+                  <CharacterCard {...item} />
                 </div>
               ))
           ) : (
             data.results.map((item) => (
               <div className="col-4" key={item.id}>
-                <Card {...item} />
+                <CharacterCard {...item} />
               </div>
             ))
           )}
