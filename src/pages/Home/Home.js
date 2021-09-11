@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import CharacterCard from "../../components/card/character/CharacterCard";
+import { Container, Row, Col } from "react-bootstrap";
 
 function Home(props) {
   const [loading, setLoading] = React.useState(true);
@@ -29,8 +30,8 @@ function Home(props) {
 
   return (
     <Fragment>
-      <div className="container">
-        <div className="row">
+      <Container>
+        <Row className="justify-content-md-center">
           {loading ? (
             <p>Cargando...</p>
           ) : search !== null ? (
@@ -39,19 +40,19 @@ function Home(props) {
                 filterItem.name.toLowerCase().includes(search.toLowerCase())
               )
               .map((item) => (
-                <div className="col-4" key={item.id}>
+                <Col xs={12} sm={6} md={4} key={item.id}>
                   <CharacterCard {...item} />
-                </div>
+                </Col>
               ))
           ) : (
             data.results.map((item) => (
-              <div className="col-4" key={item.id}>
+              <Col xs={12} sm={6} md={4} key={item.id}>
                 <CharacterCard {...item} />
-              </div>
+              </Col>
             ))
           )}
-        </div>
-      </div>
+        </Row>
+      </Container>
     </Fragment>
   );
 }
