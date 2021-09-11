@@ -1,16 +1,17 @@
 import React, { Fragment } from "react";
+import { Form, FormControl, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function Navbar(props) {
+function NavbarSearch(props) {
   return (
     <Fragment>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container-fluid">
-          <Link class="navbar-brand" href="#">
+      <Navbar bg="dark" variant="dark" className="mb-4">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">
             Rick and Morty App
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -18,10 +19,10 @@ function Navbar(props) {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <Link className="nav-link active" aria-current="page" to="/">
                 Home
               </Link>
@@ -29,20 +30,20 @@ function Navbar(props) {
                 Episodes
               </Link>
             </ul>
-            <form className="d-flex">
-              <input
+            <Form className="d-flex">
+              <FormControl
                 onChange={props.hadleSearch}
                 className="form-control me-2"
                 type="search"
                 placeholder="Busqueda"
                 aria-label="Search"
-              ></input>
-            </form>
+              ></FormControl>
+            </Form>
           </div>
         </div>
-      </nav>
+      </Navbar>
     </Fragment>
   );
 }
 
-export default Navbar;
+export default NavbarSearch;

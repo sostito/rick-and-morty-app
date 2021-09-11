@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./styles/global";
 import Home from "./pages/Home/Home";
 import Episodes from "./pages/Episodes/Episodes";
-import Navbar from "./components/navbar/navbar";
+import NavbarSearch from "./components/navbar/navbar";
 
 function App() {
   const [search, setSearch] = React.useState(null);
@@ -14,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Navbar hadleSearch={hadleSearch} />
+      <NavbarSearch hadleSearch={hadleSearch} />
       <Switch>
         <Route exact path="/" render={() => <Home search={search} />} />
         <Route
