@@ -31,7 +31,7 @@ function Home(props) {
   return (
     <Fragment>
       <Container>
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-md-center animated fadeIn slow">
           {loading ? (
             <p>Cargando...</p>
           ) : search !== null ? (
@@ -40,13 +40,13 @@ function Home(props) {
                 filterItem.name.toLowerCase().includes(search.toLowerCase())
               )
               .map((item) => (
-                <Col xs={12} sm={6} md={4} key={item.id}>
+                <Col xs={6} sm={4} md={3} key={item.id}>
                   <CharacterCard {...item} />
                 </Col>
               ))
           ) : (
             data.results.map((item) => (
-              <Col xs={12} sm={6} md={4} key={item.id}>
+              <Col xs={6} sm={4} md={3} key={item.id}>
                 <CharacterCard {...item} />
               </Col>
             ))
