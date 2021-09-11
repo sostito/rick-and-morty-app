@@ -5,9 +5,9 @@ import { Container, Row, Col } from "react-bootstrap";
 function Home(props) {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState({});
-  const [search, setSearch] = React.useState(null);
+  const [search, setSearch] = React.useState("");
 
-  if (props.search && search !== props.search) {
+  if (search !== props.search) {
     setSearch(props.search);
   }
 
@@ -34,7 +34,7 @@ function Home(props) {
         <Row className="justify-content-md-center animated fadeIn slow">
           {loading ? (
             <p>Cargando...</p>
-          ) : search !== null ? (
+          ) : search !== null && search !== "" ? (
             data.results
               .filter((filterItem) =>
                 filterItem.name.toLowerCase().includes(search.toLowerCase())

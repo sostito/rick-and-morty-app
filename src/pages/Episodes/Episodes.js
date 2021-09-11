@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import EpisodeCard from "../../components/card/episode/EpisodeCard";
 import Pagination from "../../components/pagination/pagination";
 
 function Episodes(props) {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState({});
-  const [search, setSearch] = React.useState(null);
+  const [search, setSearch] = React.useState("");
 
-  if (props.search && search !== props.search) {
+  if (search !== props.search) {
     setSearch(props.search);
   }
 
@@ -38,28 +39,28 @@ function Episodes(props) {
 
   return (
     <Fragment>
-      <div className="container">
-        <div className="row">
+      <Container>
+        <Row className="animated fadeIn slow">
           {loading ? (
             <p>Cargando...</p>
-          ) : search !== null ? (
+          ) : search !== null && search !== "" ? (
             data.results
               .filter((filterItem) =>
                 filterItem.name.toLowerCase().includes(search.toLowerCase())
               )
               .map((item) => (
-                <div className="col-4" key={item.id}>
+                <Col xs={6} sm={6} lg={4} key={item.id}>
                   <EpisodeCard {...item} />
-                </div>
+                </Col>
               ))
           ) : (
             data.results.map((item) => (
-              <div className="col-4" key={item.id}>
+              <Col xs={12} sm={6} lg={4} key={item.id}>
                 <EpisodeCard {...item} />
-              </div>
+              </Col>
             ))
           )}
-        </div>
+        </Row>
         {loading ? (
           <p>Cargando...</p>
         ) : (
@@ -69,7 +70,7 @@ function Episodes(props) {
             activePage={props.match.params.page}
           />
         )}
-      </div>
+      </Container>
     </Fragment>
   );
 }
