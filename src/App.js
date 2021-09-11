@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { GlobalStyle } from "./styles/global";
+import Home from "./pages/Home/Home";
+import Episodes from "./pages/Episodes/Episodes";
+import Navbar from "./components/navbar/navbar";
 
 function App() {
+  const [search, setSearch] = React.useState(null);
+  function hadleSearch(e) {
+    setSearch(e.target.value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <GlobalStyle />
+      <Navbar hadleSearch={hadleSearch} />
+      <Switch>
+        <Route exact path="/" render={() => <Home search={search} />} />
+        <Route
+          exact
+          path="/episodes/:page"
+          render={(props) => <Episodes search={search} {...props} />}
+        />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
