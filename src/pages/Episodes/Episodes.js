@@ -2,11 +2,13 @@ import React, { Fragment } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import EpisodeCard from "../../components/card/episode/EpisodeCard";
 import Pagination from "../../components/pagination/pagination";
+import { useParams } from 'react-router-dom'
 
 function Episodes(props) {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState({});
   const [search, setSearch] = React.useState("");
+  const { page } = useParams()
 
   if (search !== props.search) {
     setSearch(props.search);
@@ -21,14 +23,13 @@ function Episodes(props) {
       setLoading(true);
       window
         .fetch(
-          `https://rickandmortyapi.com/api/episode${
-            e ? "?page=" + e.target.innerText : ""
-          }`
+          `https://rickandmortyapi.com/api/episode?page= + ${page}`
         )
         .then((res) => res.json())
         .then((response) => {
           setData(response);
           setLoading(false);
+          console.log('termina')
         });
     } catch (error) {
       console.log(
@@ -67,7 +68,7 @@ function Episodes(props) {
           <Pagination
             nextPage={hadleSearch}
             numberPages={data.info.pages}
-            activePage={props.match.params.page}
+            activePage={page}
           />
         )}
       </Container>

@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
 import { Form, FormControl, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function NavbarSearch(props) {
   return (
     <Fragment>
       <Navbar bg="dark" variant="dark" className="mb-4">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <NavLink className="navbar-brand" to="/">
             Rick and Morty App
-          </Link>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -23,12 +23,12 @@ function NavbarSearch(props) {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <NavLink className="nav-link" aria-current="page" to="/">
                 Home
-              </Link>
-              <Link className="nav-link" to="/episodes/1">
+              </NavLink>
+              <NavLink className="nav-link" to="/episodes/1">
                 Episodes
-              </Link>
+              </NavLink>
             </ul>
             <Form className="d-flex">
               <FormControl

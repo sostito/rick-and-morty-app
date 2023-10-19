@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { GlobalStyle } from "./styles/global";
 import Home from "./pages/Home/Home";
 import Episodes from "./pages/Episodes/Episodes";
@@ -12,18 +12,18 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyle />
       <NavbarSearch hadleSearch={hadleSearch} />
-      <Switch>
-        <Route exact path="/" render={() => <Home search={search} />} />
+      <Routes>
+        <Route path="/" element={<Home search={search} />} />
         <Route
           exact
           path="/episodes/:page"
-          render={(props) => <Episodes search={search} {...props} />}
+          element={<Episodes search={search} />}
         />
-      </Switch>
-    </BrowserRouter>
+      </Routes>
+    </>
   );
 }
 
