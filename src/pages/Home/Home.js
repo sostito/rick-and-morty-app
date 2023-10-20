@@ -1,15 +1,13 @@
 import React, { Fragment } from "react";
 import CharacterCard from "../../components/card/character/CharacterCard";
 import { Container, Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 function Home(props) {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState({});
-  const [search, setSearch] = React.useState("");
 
-  if (search !== props.search) {
-    setSearch(props.search);
-  }
+  const search = useSelector((state) => state.search);
 
   React.useEffect(() => {
     try {
@@ -34,10 +32,10 @@ function Home(props) {
         <Row className="justify-content-md-center animated fadeIn slow">
           {loading ? (
             <p>Cargando...</p>
-          ) : search !== null && search !== "" ? (
+          ) : search.searchMain !== null && search.searchMain !== "" ? (
             data.results
               .filter((filterItem) =>
-                filterItem.name.toLowerCase().includes(search.toLowerCase())
+                filterItem.name.toLowerCase().includes(search.searchMain.toLowerCase())
               )
               .map((item) => (
                 <Col xs={6} sm={4} md={3} key={item.id}>

@@ -1,8 +1,15 @@
 import React, { Fragment } from "react";
 import { Form, FormControl, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { searchInMain } from '../../redux/searchSlice'
 
-function NavbarSearch(props) {
+function NavbarSearch() {
+  const dispatch = useDispatch();
+
+  function search(e) {
+    dispatch(searchInMain({ 'searchMain': e.target.value }));
+  }
   return (
     <Fragment>
       <Navbar bg="dark" variant="dark" className="mb-4">
@@ -32,7 +39,7 @@ function NavbarSearch(props) {
             </ul>
             <Form className="d-flex">
               <FormControl
-                onChange={props.hadleSearch}
+                onChange={search}
                 className="form-control me-2"
                 type="search"
                 placeholder="Busqueda"

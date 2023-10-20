@@ -29,7 +29,6 @@ function Episodes(props) {
         .then((response) => {
           setData(response);
           setLoading(false);
-          console.log('termina')
         });
     } catch (error) {
       console.log(

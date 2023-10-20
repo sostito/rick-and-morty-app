@@ -16,7 +16,7 @@ function App() {
       <GlobalStyle />
       <NavbarSearch hadleSearch={hadleSearch} />
       <Routes>
-        <Route path="/" element={<Home search={search} />} />
+        <Route path="/" element={<Home />} />
         <Route
           exact
           path="/episodes/:page"
