@@ -6,21 +6,16 @@ import Episodes from "./pages/Episodes/Episodes";
 import NavbarSearch from "./components/navbar/navbar";
 
 function App() {
-  const [search, setSearch] = React.useState(null);
-  function hadleSearch(e) {
-    setSearch(e.target.value);
-  }
-
   return (
     <>
       <GlobalStyle />
-      <NavbarSearch hadleSearch={hadleSearch} />
+      <NavbarSearch />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           exact
           path="/episodes/:page"
-          element={<Episodes search={search} />}
+          element={<Episodes />}
         />
       </Routes>
     </>

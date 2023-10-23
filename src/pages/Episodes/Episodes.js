@@ -5,7 +5,7 @@ import Pagination from "../../components/pagination/pagination";
 import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux";
 
-function Episodes(props) {
+function Episodes() {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState({});
   const { page } = useParams()
