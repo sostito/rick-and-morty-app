@@ -10,7 +10,7 @@ function App() {
     <>
       <GlobalStyle />
       <NavbarSearch />
-      <Routes>
+      <Routes basename={process.env.PUBLIC_URL}>
         <Route path="/" element={<Home />} />
         <Route
           exact
