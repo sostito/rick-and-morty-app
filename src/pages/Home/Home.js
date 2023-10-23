@@ -32,10 +32,10 @@ function Home(props) {
         <Row className="justify-content-md-center animated fadeIn slow">
           {loading ? (
             <p>Cargando...</p>
-          ) : search.searchMain !== null && search.searchMain !== "" ? (
+          ) : search.searchText !== null && search.searchText !== "" ? (
             data.results
               .filter((filterItem) =>
-                filterItem.name.toLowerCase().includes(search.searchMain.toLowerCase())
+                filterItem.name.toLowerCase().includes(search.searchText.toLowerCase())
               )
               .map((item) => (
                 <Col xs={6} sm={4} md={3} key={item.id}>

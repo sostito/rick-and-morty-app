@@ -3,16 +3,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import EpisodeCard from "../../components/card/episode/EpisodeCard";
 import Pagination from "../../components/pagination/pagination";
 import { useParams } from 'react-router-dom'
+import { useSelector } from "react-redux";
 
 function Episodes(props) {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState({});
-  const [search, setSearch] = React.useState("");
   const { page } = useParams()
 
-  if (search !== props.search) {
-    setSearch(props.search);
-  }
+  const search = useSelector((state) => state.search);
 
   React.useEffect(() => {
     hadleSearch();
@@ -43,10 +41,10 @@ function Episodes(props) {
         <Row className="animated fadeIn slow">
           {loading ? (
             <p>Cargando...</p>
-          ) : search !== null && search !== "" ? (
+          ) : search.searchText !== null && search.searchText !== "" ? (
             data.results
               .filter((filterItem) =>
-                filterItem.name.toLowerCase().includes(search.toLowerCase())
+                filterItem.name.toLowerCase().includes(search.searchText.toLowerCase())
               )
               .map((item) => (
                 <Col xs={6} sm={6} lg={4} key={item.id}>

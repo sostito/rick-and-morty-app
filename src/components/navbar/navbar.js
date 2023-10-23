@@ -2,13 +2,13 @@ import React, { Fragment } from "react";
 import { Form, FormControl, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { searchInMain } from '../../redux/searchSlice'
+import { search } from '../../redux/searchSlice'
 
 function NavbarSearch() {
   const dispatch = useDispatch();
 
-  function search(e) {
-    dispatch(searchInMain({ 'searchMain': e.target.value }));
+  function searchCaracter(e) {
+    dispatch(search({ 'searchText': e.target.value }));
   }
   return (
     <Fragment>
@@ -39,7 +39,7 @@ function NavbarSearch() {
             </ul>
             <Form className="d-flex">
               <FormControl
-                onChange={search}
+                onChange={searchCaracter}
                 className="form-control me-2"
                 type="search"
                 placeholder="Busqueda"
