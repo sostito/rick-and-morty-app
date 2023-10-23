@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/card/character/CharacterCard.css"],"names":[],"mappings":"AAAA,MACE,WACF","file":"main.f57a940c.chunk.css","sourcesContent":[".card {\n  width: 18rem;\n}\n"]}
