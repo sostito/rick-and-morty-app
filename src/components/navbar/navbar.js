@@ -3,13 +3,22 @@ import { Form, FormControl, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { search } from '../../redux/searchSlice'
+import appFirebase from '../../config/firebaseCredentials'
+import { getAuth } from "firebase/auth";
 
 function NavbarSearch() {
+  const auth = getAuth(appFirebase)
   const dispatch = useDispatch();
 
   function searchCaracter(e) {
     dispatch(search({ 'searchText': e.target.value }));
   }
+
+  const logout = async () => {
+    await auth.signOut();
+  }
+
+
   return (
     <Fragment>
       <Navbar bg="dark" variant="dark" className="mb-4">
@@ -45,8 +54,21 @@ function NavbarSearch() {
                 placeholder="Busqueda"
                 aria-label="Search"
               ></FormControl>
+              <button
+                className="btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                onClick={logout}
+              >
+                Logout
+              </button>
             </Form>
           </div>
+
         </div>
       </Navbar>
     </Fragment>

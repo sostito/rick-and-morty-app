@@ -3,7 +3,7 @@ import CharacterCard from "../../components/card/character/CharacterCard";
 import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-function Home(props) {
+function Home() {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState({});
 
