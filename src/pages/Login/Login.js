@@ -7,10 +7,12 @@ import './Login.css'
 function Login() {
     let [authMode, setAuthMode] = useState("signin")
     const [registrando, setRegistrando] = useState(false)
+    const [error, setError] = useState(null)
     const auth = getAuth(appFirebase)
 
 
     const changeAuthMode = () => {
+        setError(null)
         setAuthMode(authMode === "signin" ? "signup" : "signin")
         setRegistrando(!registrando)
     }
@@ -21,10 +23,18 @@ function Login() {
         const contraseña = e.target.password.value;
 
         if (registrando) {
-            await createUserWithEmailAndPassword(auth, correo, contraseña)
+            try {
+                await createUserWithEmailAndPassword(auth, correo, contraseña)
+            } catch (error) {
+                setError('User already exists')
+            }
         }
         else {
-            await signInWithEmailAndPassword(auth, correo, contraseña)
+            try {
+                await signInWithEmailAndPassword(auth, correo, contraseña)
+            } catch (error) {
+                setError('User or password wrong')
+            }
         }
     }
 
@@ -39,6 +49,8 @@ function Login() {
                             <span className="link-primary" onClick={changeAuthMode}>
                                 Sign Up
                             </span>
+                            {error ? (<p style={{ color: 'red' }}>{error}</p>) : (<></>)}
+
                         </div>
                         <div className="form-group mt-3">
                             <label>Email address</label>
@@ -82,6 +94,7 @@ function Login() {
                         <span className="link-primary" onClick={changeAuthMode}>
                             Sign In
                         </span>
+                        {error ? (<p style={{ color: 'red' }}>{error}</p>) : (<></>)}
                     </div>
                     <div className="form-group mt-3">
                         <label>Email address</label>
