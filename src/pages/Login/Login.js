@@ -75,9 +75,6 @@ function Login() {
                                 Submit
                             </button>
                         </div>
-                        <p className="text-center mt-2">
-                            Forgot <a href="#">password?</a>
-                        </p>
                     </div>
                 </form>
             </div>
@@ -119,9 +116,6 @@ function Login() {
                             Submit
                         </button>
                     </div>
-                    <p className="text-center mt-2">
-                        Forgot <a href="#">password?</a>
-                    </p>
                 </div>
             </form>
         </div>
